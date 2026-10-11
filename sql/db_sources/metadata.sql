@@ -1,3 +1,4 @@
+
 create  table metadata ( 
     machine_id serial primary key,
     temperature float ,
@@ -5,4 +6,6 @@ create  table metadata (
     rpm float , 
     status varchar(100) ,
     measured_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-)
+); 
+
+

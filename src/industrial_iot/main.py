@@ -1,6 +1,6 @@
 from simulator import generate_measurement
 import time 
-from machines import machines 
+from industrial_iot.measurements import measurements_init
 from database import  insert_measurement 
 from concurrent.futures import ThreadPoolExecutor
 
@@ -9,7 +9,7 @@ if __name__ == "__main__":
     while True:
         try : 
             with ThreadPoolExecutor() as executor:
-                    resultats = executor.map(generate_measurement, machines)
+                    resultats = executor.map(generate_measurement, measurements_init)
                     for resultat in resultats: 
                         insert_measurement(resultat) 
                         print(f"Inserted measurement for {resultat['machine_id']} at {resultat['timestamp']}") 

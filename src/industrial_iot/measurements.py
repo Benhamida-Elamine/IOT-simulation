@@ -1,4 +1,4 @@
-machine_0001 = { 
+measurement_01 = { 
     "machine_id": "MACHINE_0001",
     "timestamp": "2026-10-03T12:00:00Z",
     "temperature": 72.5,
@@ -8,7 +8,9 @@ machine_0001 = {
 
 } 
 
-machine_0002 = { 
+
+
+measurement_02 = { 
     "machine_id": "MACHINE_0002",
     "timestamp": "2026-10-03T12:00:00Z",
     "temperature": 71.9,
@@ -18,7 +20,7 @@ machine_0002 = {
 
 } 
 
-machine_0003 = { 
+measurement_03 = { 
     "machine_id": "MACHINE_0003",
     "timestamp": "2026-10-03T12:00:00Z",
     "temperature": 69.5,
@@ -28,7 +30,7 @@ machine_0003 = {
 
 } 
 
-machine_0004 = { 
+measurement_04 = { 
     "machine_id": "MACHINE_0004",
     "timestamp": "2026-10-03T12:00:00Z",
     "temperature": 70.5,
@@ -38,7 +40,7 @@ machine_0004 = {
 
 }
 
-machine_0005 = { 
+measurement_05 = { 
     "machine_id": "MACHINE_0005",
     "timestamp": "2026-10-03T12:00:00Z",
     "temperature": 74.5,
@@ -48,10 +50,10 @@ machine_0005 = {
 
 } 
 
-machines = [
-    machine_0001,
-    machine_0002,
-    machine_0003,
-    machine_0004,
-    machine_0005,
+measurements_init = [
+    measurement_01,
+    measurement_02,
+    measurement_03,
+    measurement_04,
+    measurement_05,
 ]
