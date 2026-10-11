@@ -18,6 +18,7 @@ conn_pool =pool.ThreadedConnectionPool(
 #    password="***REMOVED***"
 #)
 
+
 print("Connexion réussie à PostgreSQL !")
 
 def insert_measurement( measurement):
