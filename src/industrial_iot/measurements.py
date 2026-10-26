@@ -55,5 +55,5 @@ measurements_init = [
     measurement_02,
     measurement_03,
     measurement_04,
-    measurement_05,
+    measurement_05
 ]

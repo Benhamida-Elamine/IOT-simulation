@@ -1,6 +1,6 @@
 from simulator import generate_measurement
 import time 
-from industrial_iot.measurements import measurements_init
+from measurements import measurements_init
 from database import  insert_measurement 
 from concurrent.futures import ThreadPoolExecutor
 
