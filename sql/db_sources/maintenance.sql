@@ -1,7 +1,7 @@
 -- 3. Historique des interventions de maintenance
-CREATE TABLE maintenance (
-    maintenance_id varchar(30) PRIMARY KEY,
-    machine_id VARCHAR(30) NOT NULL,
+CREATE TABLE IF NOT EXISTS maintenance (
+    maintenance_id BIGSERIAL PRIMARY KEY,
+    machine_id VARCHAR(20) NOT NULL,
     maintenance_date TIMESTAMPTZ NOT NULL,
     maintenance_type VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
@@ -23,8 +23,8 @@ INSERT INTO maintenance (
     technician,
     cost_eur
 )
-VALUES
-    ('MACHINE_01', '2025-01-15 09:00:00+01', 'PREVENTIVE',
+SELECT * FROM (VALUES
+    ('MACHINE_01', '2025-01-15 09:00:00+01'::timestamptz, 'PREVENTIVE',
      'Remplacement de l''huile hydraulique', 'Technicien A', 420.00),
 
     ('MACHINE_03', '2025-02-10 14:30:00+01', 'CORRECTIVE',
@@ -46,4 +46,7 @@ VALUES
      'Inspection des vibrations de la pompe', 'Technicien C', 230.00),
 
     ('MACHINE_20', '2025-08-08 13:00:00+02', 'CORRECTIVE',
-     'Remplacement de la valve de pression', 'Technicien D', 760.00);
+     'Remplacement de la valve de pression', 'Technicien D', 760.00)
+) AS v
+-- Ne pas dupliquer l'historique si le script est relancé.
+WHERE NOT EXISTS (SELECT 1 FROM maintenance);

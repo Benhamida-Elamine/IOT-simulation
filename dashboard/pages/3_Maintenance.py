@@ -1,6 +1,6 @@
-import streamlit as st
 import plotly.express as px
-from queries import get_maintenance_summary, get_maintenance
+import streamlit as st
+from queries import get_maintenance, get_maintenance_summary
 
 st.set_page_config(page_title="Maintenance", page_icon="🛠️", layout="wide")
 st.title("🛠️ Maintenance Analytics")
@@ -21,7 +21,7 @@ if summary.empty and history.empty:
 c1, c2, c3 = st.columns(3)
 c1.metric("Machines", summary["machine_id"].nunique() if "machine_id" in summary.columns else 0)
 c2.metric("Interventions", int(summary["maintenance_count"].sum()) if "maintenance_count" in summary.columns else len(history))
-c3.metric("Minutes d'arrêt cumulées", int(summary["total_downtime_minutes"].fillna(0).sum()) if "total_downtime_minutes" in summary.columns else "N/D")
+c3.metric("Coût total (EUR)", f"{float(summary['total_cost_eur'].fillna(0).sum()):,.2f}".replace(",", " ") if "total_cost_eur" in summary.columns else "N/D")
 
 if "maintenance_count" in summary.columns:
     label = "machine_name" if "machine_name" in summary.columns else "machine_id"
@@ -29,7 +29,7 @@ if "maintenance_count" in summary.columns:
     st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Maintenance et état des mesures")
-cols = [c for c in ["machine_id", "machine_name", "maintenance_count", "last_maintenance_at", "total_downtime_minutes", "last_measured_at", "avg_temperature", "avg_vibration"] if c in summary.columns]
+cols = [c for c in ["machine_id", "machine_name", "maintenance_count", "last_maintenance_at", "total_cost_eur", "last_measured_at", "avg_temperature", "avg_vibration"] if c in summary.columns]
 st.dataframe(summary[cols], use_container_width=True, hide_index=True)
 
 st.subheader("Historique des interventions")

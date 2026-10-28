@@ -1,0 +1,11 @@
+# Simulateur et ETL
+psycopg2-binary>=2.9
+mysql-connector-python>=8.3
+python-dotenv>=1.0
+
+# Dashboard
+-r dashboard/requirements.txt
+
+# Tests et qualité
+pytest>=8.0
+ruff>=0.6

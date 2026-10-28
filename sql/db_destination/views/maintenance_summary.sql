@@ -1,13 +1,14 @@
--- Maintenance metrics per machine, joined to pre-aggregated measurements.
--- This avoids a many-to-many fan-out between raw metadata and maintenance rows.
--- Adapt column names to the real MySQL schema before creating this view.
+-- Indicateurs de maintenance par machine, joints aux mesures pré-agrégées.
+-- Les deux agrégations sont séparées pour éviter un produit cartésien
+-- entre les mesures brutes et les interventions.
 
 CREATE OR REPLACE VIEW maintenance_summary AS
 SELECT
     m.machine_id,
+    m.machine_name,
     COALESCE(mt.maintenance_count, 0) AS maintenance_count,
     mt.last_maintenance_at,
-    mt.total_downtime_minutes,
+    COALESCE(mt.total_cost_eur, 0) AS total_cost_eur,
     md.last_measured_at,
     md.avg_temperature,
     md.avg_vibration
@@ -17,7 +18,7 @@ LEFT JOIN (
         machine_id,
         COUNT(*) AS maintenance_count,
         MAX(maintenance_date) AS last_maintenance_at,
-        SUM(COALESCE(duration_minutes, 0)) AS total_downtime_minutes
+        SUM(cost_eur) AS total_cost_eur
     FROM maintenance
     GROUP BY machine_id
 ) AS mt

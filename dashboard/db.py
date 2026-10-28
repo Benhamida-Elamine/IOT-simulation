@@ -1,7 +1,8 @@
 """MySQL connection helpers used by Streamlit."""
 import os
-import pandas as pd
+
 import mysql.connector
+import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 

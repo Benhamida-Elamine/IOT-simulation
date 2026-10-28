@@ -1,4 +1,5 @@
-CREATE TABLE machines (
+-- 1. Machines de référence (à exécuter en premier)
+CREATE TABLE IF NOT EXISTS machines (
     machine_id VARCHAR(20) PRIMARY KEY,
     machine_name VARCHAR(100) NOT NULL,
     machine_type VARCHAR(50) NOT NULL,
@@ -33,4 +34,5 @@ VALUES
 ('MACHINE_17', 'Moteur industriel 04', 'Motor', 'LINE_B', '2020-09-27'),
 ('MACHINE_18', 'Pompe industrielle 04', 'Pump', 'LINE_C', '2023-08-16'),
 ('MACHINE_19', 'Convoyeur 04', 'Conveyor', 'LINE_A', '2022-12-09'),
-('MACHINE_20', 'Compresseur 04', 'Compressor', 'LINE_B', '2024-05-21');
+('MACHINE_20', 'Compresseur 04', 'Compressor', 'LINE_B', '2024-05-21')
+ON CONFLICT (machine_id) DO NOTHING;

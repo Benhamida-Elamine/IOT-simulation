@@ -1,12 +1,13 @@
--- Aggregated machine summary.
--- Uses a separate aggregation for metadata to avoid multiplying measurements
--- when a machine has multiple sensors and/or maintenance records.
--- Adapt column names to the real MySQL schema before creating this view.
+-- Synthèse par machine.
+-- Les mesures sont agrégées dans une sous-requête séparée pour éviter
+-- de multiplier les lignes lors de la jointure avec les autres tables.
 
 CREATE OR REPLACE VIEW machine_summary AS
 SELECT
     m.machine_id,
+    m.machine_name,
     m.machine_type,
+    m.location,
     COALESCE(md.measurement_count, 0) AS measurement_count,
     md.last_measured_at,
     md.avg_temperature,

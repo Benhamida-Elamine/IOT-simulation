@@ -1,5 +1,5 @@
 
-from datetime import datetime
+from datetime import datetime, timezone
 from math import isfinite
 
 
@@ -10,6 +10,23 @@ def clean_text(value):
         return value if value else None
 
     return value
+
+
+def to_utc_naive(value):
+    """Convertit une date avec fuseau horaire en UTC sans fuseau.
+
+    Le type DATETIME de MySQL ne conserve pas le fuseau horaire :
+    on stocke donc toutes les dates en UTC pour qu'elles restent comparables.
+    """
+    if isinstance(value, datetime) and value.tzinfo is not None:
+        return value.astimezone(timezone.utc).replace(tzinfo=None)
+
+    return value
+
+
+def clean_value(value):
+    """Nettoie le texte et normalise les dates."""
+    return to_utc_naive(clean_text(value))
 
 
 def remove_duplicates(rows, key_columns):
@@ -38,7 +55,7 @@ def transform_machines(rows):
 
     for row in rows:
         row = {
-            column: clean_text(value)
+            column: clean_value(value)
             for column, value in row.items()
         }
 
@@ -56,7 +73,7 @@ def transform_sensors(rows):
 
     for row in rows:
         row = {
-            column: clean_text(value)
+            column: clean_value(value)
             for column, value in row.items()
         }
 
@@ -74,7 +91,7 @@ def transform_metadata(rows):
 
     for row in rows:
         row = {
-            column: clean_text(value)
+            column: clean_value(value)
             for column, value in row.items()
         }
 
@@ -111,7 +128,7 @@ def transform_metadata(rows):
                 valid = False
                 break
 
-            row[column] = number
+            row[column] = int(number) if column == "rpm" else number
 
         if not valid:
             continue
@@ -130,7 +147,7 @@ def transform_maintenance(rows):
 
     for row in rows:
         row = {
-            column: clean_text(value)
+            column: clean_value(value)
             for column, value in row.items()
         }
 

@@ -1,10 +1,14 @@
-import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
 from db import get_connection_status
 from queries import (
-    get_machine_summary, get_maintenance_summary, get_metadata,
-    get_machines, get_sensors, get_maintenance, clear_query_cache
+    clear_query_cache,
+    get_machine_summary,
+    get_machines,
+    get_maintenance_summary,
+    get_metadata,
+    get_sensors,
 )
 
 st.set_page_config(page_title="Industrial IoT | Overview", page_icon="🏭", layout="wide")

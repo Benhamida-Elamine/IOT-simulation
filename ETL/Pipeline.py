@@ -1,25 +1,23 @@
 
 from Extraction import (
-    get_postgres_connection,
     extract_machines,
-    extract_sensors,
-    extract_metadata,
     extract_maintenance,
+    extract_metadata,
+    extract_sensors,
+    get_postgres_connection,
 )
-
-from Transformation import (
-    transform_machines,
-    transform_sensors,
-    transform_metadata,
-    transform_maintenance,
-)
-
 from Load import (
     get_mysql_connection,
     load_machines,
-    load_sensors,
-    load_metadata,
     load_maintenance,
+    load_metadata,
+    load_sensors,
+)
+from Transformation import (
+    transform_machines,
+    transform_maintenance,
+    transform_metadata,
+    transform_sensors,
 )
 
 

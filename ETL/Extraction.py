@@ -1,7 +1,8 @@
 
 import os
+
 import psycopg2
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 from psycopg2.extras import RealDictCursor
 
 load_dotenv()
@@ -81,22 +82,22 @@ def extract_maintenance(connection):
 
 # if __name__ == "__main__":
 #     connection = None
-# 
+#
 #     try:
 #         connection = get_postgres_connection()
-# 
+#
 #         machines = extract_machines(connection)
 #         sensors = extract_sensors(connection)
 #         metadata = extract_metadata(connection)
 #         maintenance = extract_maintenance(connection)
-# 
+#
 #         print("\nExtraction terminée.")
-# 
+#
 #     except psycopg2.Error as error:
 #         print(f"Erreur PostgreSQL : {error}")
-# 
+#
 #     finally:
 #         if connection is not None:
 #             connection.close()
 #             print("Connexion PostgreSQL fermée.")
-# 
+#

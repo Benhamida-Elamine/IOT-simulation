@@ -1,5 +1,5 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 from db import load_data
 
 st.set_page_config(page_title="Data Quality", page_icon="🛡️", layout="wide")
@@ -16,7 +16,8 @@ table = st.selectbox("Table", tables)
 df = data[table]
 if df.empty:
     st.warning(f"La table {table} est vide ou indisponible.")
-    if errors.get(table): st.code(errors[table])
+    if errors.get(table):
+        st.code(errors[table])
     st.stop()
 
 quality = pd.DataFrame({

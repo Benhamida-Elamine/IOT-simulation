@@ -1,5 +1,5 @@
 -- 2. Capteurs installés sur les machines
-CREATE TABLE sensors (
+CREATE TABLE IF NOT EXISTS sensors (
     sensor_id VARCHAR(30) PRIMARY KEY,
     machine_id VARCHAR(20) NOT NULL,
     sensor_type VARCHAR(30) NOT NULL,

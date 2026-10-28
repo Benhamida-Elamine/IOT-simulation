@@ -1,6 +1,6 @@
-import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
 from queries import get_machine_summary, get_metadata
 
 st.set_page_config(page_title="Machine Monitoring", page_icon="⚙️", layout="wide")

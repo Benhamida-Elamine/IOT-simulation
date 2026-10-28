@@ -1,6 +1,6 @@
-import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
 from queries import get_metadata
 
 st.set_page_config(page_title="Sensor Analytics", page_icon="📈", layout="wide")

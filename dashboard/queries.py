@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 from db import get_connection
 
+
 @st.cache_data(ttl=30)
 def _read_query(query_name: str) -> pd.DataFrame:
     # Only predefined query names are accepted; SQL is never supplied by a user.
